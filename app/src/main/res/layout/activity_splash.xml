@@ -30,8 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/alex_brush"
             android:text="@string/name"
+            android:fontFamily="@font/alex_brush"
             android:textColor="@color/colorPrimaryText"
             android:textSize="30sp"
             android:textStyle="bold" />
