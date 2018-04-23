@@ -30,11 +30,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WelcomeActivity"></activity>
+        <activity android:name=".activity.WelcomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".activity.SignActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_sign"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
