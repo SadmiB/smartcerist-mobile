@@ -15,7 +15,7 @@ public interface RetrofitInterface {
     Observable<Response> signIn(@Body User user);
 
     @POST("signup")
-    Observable signUp(@Body User user);
+    Observable<Response> signUp(@Body User user);
 
     @GET("users/{email}")
     Observable getProfile(@Path("email") String email);

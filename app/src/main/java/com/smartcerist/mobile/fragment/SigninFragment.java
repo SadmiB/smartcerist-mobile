@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -46,8 +47,8 @@ public class SigninFragment extends Fragment {
     Button signin_btn;
     TextInputLayout ti_email;
     TextInputLayout ti_password;
-    ProgressBar progressBar;
 
+    ProgressDialog progressDialog;
     public SigninFragment() {
         // Required empty public constructor
     }
@@ -86,6 +87,11 @@ public class SigninFragment extends Fragment {
         }
 
         if(err == 0) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Signing in..");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(true);
+            progressDialog.show();
             signinProcess(email, password);
         }
     }
@@ -96,7 +102,6 @@ public class SigninFragment extends Fragment {
         et_password = view.findViewById(R.id.password);
         ti_email = view.findViewById(R.id.ti_email);
         ti_password = view.findViewById(R.id.ti_password);
-        progressBar = view.findViewById(R.id.progressBar);
     }
 
     private void setError() {
@@ -115,8 +120,7 @@ public class SigninFragment extends Fragment {
     }
 
     private void handleError(Throwable error) {
-        progressBar.setVisibility(View.GONE);
-
+        progressDialog.dismiss();
         if (error instanceof HttpException) {
 
             Gson gson = new GsonBuilder().create();
@@ -139,13 +143,11 @@ public class SigninFragment extends Fragment {
 
 
     private void handleResponse(Response response) {
-
-        progressBar.setVisibility(View.GONE);
-
+        progressDialog.dismiss();
         if(response.getEmail() != null){
             UserPreferenceManager userPreferenceManager = new UserPreferenceManager(getActivity());
             userPreferenceManager.saveConnectedUser(response.getEmail(), response.getToken());
-            Toast.makeText(getActivity(), response.getEmail(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "welcome...", Toast.LENGTH_SHORT).show();
             et_email.setText(null);
             et_password.setText(null);
 
@@ -160,7 +162,6 @@ public class SigninFragment extends Fragment {
 
     private void showSnackBarMessage(String message) {
         if (getView() != null) {
-
             Snackbar.make(getView(),message,Snackbar.LENGTH_SHORT).show();
         }
     }
