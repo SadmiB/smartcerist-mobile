@@ -19,25 +19,25 @@ public class UserPreferenceManager {
 
         SharedPreferences pref = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("token", token);
         editor.putString("email", email);
+        editor.putString("token", token);
 
         return editor.commit();
     }
 
     public String isConnected(){
-        SharedPreferences pref = context.getSharedPreferences("email", Context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         return pref.getString("token",null);
     }
 
     public String getConnectedUser(){
-        SharedPreferences pref = context.getSharedPreferences("email", Context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         return pref.getString("email",null);
     }
 
     public boolean disconnectUser()
     {
-        SharedPreferences pref = context.getSharedPreferences("email", Context.MODE_PRIVATE);
+        SharedPreferences pref = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("token", null);
         return editor.commit();

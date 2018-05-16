@@ -56,7 +56,7 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
         return homesList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image;
         TextView name;
