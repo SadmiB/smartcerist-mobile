@@ -42,6 +42,7 @@ import retrofit2.HttpException;
  */
 public class SigninFragment extends Fragment {
 
+    View view;
     private CompositeDisposable mSubscriptions;
     EditText et_email, et_password;
     Button signin_btn;
@@ -56,7 +57,8 @@ public class SigninFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_signin, container, false);
+        if(view==null)
+            view = inflater.inflate(R.layout.fragment_signin, container, false);
 
         mSubscriptions = new CompositeDisposable();
 
@@ -66,6 +68,8 @@ public class SigninFragment extends Fragment {
 
         return view;
     }
+
+
 
     public void signIn(View v) {
 
