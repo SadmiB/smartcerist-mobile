@@ -2,7 +2,6 @@ package com.smartcerist.mobile.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,29 +9,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.model.Home;
+import com.smartcerist.mobile.model.Room;
 
 import java.util.List;
 
-public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.MyViewHolder>{
+public class RoomsCustomAdapter extends RecyclerView.Adapter<RoomsCustomAdapter.MyViewHolder> {
+
 
     private Context context;
-    private List<Home> homesList;
+    private List<Room> roomsList;
 
-    public HomesCustomAdapter(Context context, List<Home> homesList) {
+    public RoomsCustomAdapter(Context context, List<Room> roomsList) {
         this.context = context;
-        this.homesList = homesList;
+        this.roomsList = roomsList;
     }
 
+    public void refreshList(List<Room> homes){
 
-    public void refreshList(List<Home> homes){
-
-        this.homesList.clear();
-        this.homesList.addAll(homes);
+        this.roomsList.clear();
+        this.roomsList.addAll(homes);
         this.notifyDataSetChanged();
 
     }
@@ -41,14 +40,14 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.home_list_layout, parent, false);
-        return new MyViewHolder(itemView);
+                .inflate(R.layout.room_list_layout, parent, false);
+        return new RoomsCustomAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final Home house = homesList.get(position);
-        holder.name.setText(house.getName());
+        final Room room = roomsList.get(position);
+        holder.name.setText(room.getName());
         //DeviceService deviceService = new DeviceService(context);
         //String density = deviceService.getScreenDensity();
         //Glide.with(context).load(Consts.images_url+"drawable-"+density+"/"+house.getImage()).skipMemoryCache(true).into(holder.image);
@@ -56,7 +55,7 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
 
     @Override
     public int getItemCount() {
-        return homesList.size();
+        return roomsList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -64,34 +63,21 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
         ImageView image;
         TextView name;
 
-        MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
 
-            image = itemView.findViewById(R.id.home_img);
-            name = itemView.findViewById(R.id.home_name);
+            image = itemView.findViewById(R.id.room_icon);
+            name = itemView.findViewById(R.id.room_name);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (isTwoPan()) {
+                    Intent intent = new Intent(context, null);
+                    intent.putExtra("room", roomsList.get(getAdapterPosition()));
+                    context.startActivity(intent);
 
-                        if (homesList.size() == 0)
-                            return;
-                    } else {
-                        Intent intent = new Intent(context, RoomsActivity.class);
-                        intent.putExtra("home", homesList.get(getAdapterPosition()));
-                        context.startActivity(intent);
-                    }
                 }
             });
         }
-
-        private boolean isTwoPan() {
-            // View view = itemView.findViewById(R.id.details_fragment);
-            // return view != null;
-            return false;
-        }
     }
-
-
 }

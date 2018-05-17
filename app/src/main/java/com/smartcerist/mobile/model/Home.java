@@ -1,6 +1,9 @@
 package com.smartcerist.mobile.model;
 
-public class Home {
+import java.io.Serializable;
+
+public class Home implements Serializable {
+    private String _id;
     private String name;
     private String address;
     private String email;
@@ -11,7 +14,7 @@ public class Home {
     private int picture;
     private String owner;
     private String[] servers;
-    private room[] rooms;
+    private Room[] Rooms;
 
     public Home(String name, int picture) {
         this.name = name;
@@ -98,11 +101,19 @@ public class Home {
         this.servers = servers;
     }
 
-    public room[] getRooms() {
-        return rooms;
+    public Room[] getRooms() {
+        return Rooms;
     }
 
-    public void setRooms(room[] rooms) {
-        this.rooms = rooms;
+    public void setRooms(Room[] Rooms) {
+        this.Rooms = Rooms;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }

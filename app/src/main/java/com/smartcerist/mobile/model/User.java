@@ -2,6 +2,7 @@ package com.smartcerist.mobile.model;
 
 public class User {
 
+    private String _id;
     private String firstName;
     private String lastName;
     private String email;
@@ -149,5 +150,13 @@ public class User {
 
     public void setHomes(String[] homes) {
         this.homes = homes;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }
