@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Home implements Serializable {
     private String _id;
@@ -14,7 +15,7 @@ public class Home implements Serializable {
     private int picture;
     private String owner;
     private String[] servers;
-    private Room[] Rooms;
+    private List<Room> rooms;
 
     public Home(String name, int picture) {
         this.name = name;
@@ -101,12 +102,12 @@ public class Home implements Serializable {
         this.servers = servers;
     }
 
-    public Room[] getRooms() {
-        return Rooms;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setRooms(Room[] Rooms) {
-        this.Rooms = Rooms;
+    public void setRooms(List<Room> Rooms) {
+        this.rooms = Rooms;
     }
 
     public String get_id() {

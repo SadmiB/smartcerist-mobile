@@ -49,7 +49,7 @@ public class SigninFragment extends Fragment {
     TextInputLayout ti_email;
     TextInputLayout ti_password;
 
-    ProgressDialog progressDialog;
+    ProgressBar progressBar;
     public SigninFragment() {
         // Required empty public constructor
     }
@@ -91,11 +91,7 @@ public class SigninFragment extends Fragment {
         }
 
         if(err == 0) {
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("Signing in..");
-            progressDialog.setIndeterminate(true);
-            progressDialog.setCancelable(true);
-            progressDialog.show();
+            progressBar.setVisibility(View.VISIBLE);
             signinProcess(email, password);
         }
     }
@@ -106,6 +102,7 @@ public class SigninFragment extends Fragment {
         et_password = view.findViewById(R.id.password);
         ti_email = view.findViewById(R.id.ti_email);
         ti_password = view.findViewById(R.id.ti_password);
+        progressBar = view.findViewById(R.id.progressBar);
     }
 
     private void setError() {
@@ -124,7 +121,6 @@ public class SigninFragment extends Fragment {
     }
 
     private void handleError(Throwable error) {
-        progressDialog.dismiss();
         if (error instanceof HttpException) {
 
             Gson gson = new GsonBuilder().create();
@@ -142,12 +138,13 @@ public class SigninFragment extends Fragment {
 
             showSnackBarMessage("Network Error !");
         }
+        progressBar.setVisibility(View.GONE);
 
     }
 
 
     private void handleResponse(Response response) {
-        progressDialog.dismiss();
+        progressBar.setVisibility(View.GONE);
         if(response.getEmail() != null){
             UserPreferenceManager userPreferenceManager = new UserPreferenceManager(getActivity());
             boolean feedback = userPreferenceManager.saveConnectedUser(response.getEmail(), response.getToken());

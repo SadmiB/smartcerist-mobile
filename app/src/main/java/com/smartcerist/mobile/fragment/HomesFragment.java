@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,6 +39,7 @@ public class HomesFragment extends Fragment {
     View view;
 
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
     private CompositeDisposable mSubscriptions;
 
@@ -57,7 +59,8 @@ public class HomesFragment extends Fragment {
         if(view == null)
             view = inflater.inflate(R.layout.fragment_homes, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.homesList);
+        recyclerView = view.findViewById(R.id.homesList);
+        progressBar = view.findViewById(R.id.progressBar);
         mSubscriptions = new CompositeDisposable();
 
         loadHomesProcess();
@@ -96,7 +99,7 @@ public class HomesFragment extends Fragment {
 
             showSnackBarMessage("Network Error !");
         }
-
+        progressBar.setVisibility(View.GONE);
     }
 
     private void handleResponse(List<Home> homes) {
@@ -112,6 +115,7 @@ public class HomesFragment extends Fragment {
         itemAnimator.setRemoveDuration(1000);
         recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setAdapter(homesCustomAdapter);
+        progressBar.setVisibility(View.GONE);
     }
 
     public void showSnackBarMessage(String message){
