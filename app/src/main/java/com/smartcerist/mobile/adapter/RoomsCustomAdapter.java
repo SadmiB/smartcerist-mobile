@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.smartcerist.mobile.R;
+import com.smartcerist.mobile.activity.RoomActivity;
 import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Room;
@@ -41,7 +42,7 @@ public class RoomsCustomAdapter extends RecyclerView.Adapter<RoomsCustomAdapter.
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.room_list_layout, parent, false);
-        return new RoomsCustomAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class RoomsCustomAdapter extends RecyclerView.Adapter<RoomsCustomAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, null);
+                    Intent intent = new Intent(context, RoomActivity.class);
                     intent.putExtra("room", roomsList.get(getAdapterPosition()));
                     context.startActivity(intent);
 

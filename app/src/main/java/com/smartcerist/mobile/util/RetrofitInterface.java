@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RetrofitInterface {
@@ -24,7 +25,10 @@ public interface RetrofitInterface {
     @GET("user/homes")
     Observable<List<Home>> getHomes();
 
-    @GET("/homes/{homeId}/rooms")
-    Observable<List<Room>> getRooms(@Path("homeId") String homeId);
+    @PUT("/api{path}") // path example: /lights/led3
+    Observable<String> toggleObjectState(@Path("path") String path, @Body String value);
+
+    @GET("/api{path}")
+    Observable<String> getObjectMeasure(@Path("path") String path);
 
 }

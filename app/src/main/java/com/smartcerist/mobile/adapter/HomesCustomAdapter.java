@@ -70,26 +70,11 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
             image = itemView.findViewById(R.id.home_img);
             name = itemView.findViewById(R.id.home_name);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isTwoPan()) {
-
-                        if (homesList.size() == 0)
-                            return;
-                    } else {
-                        Intent intent = new Intent(context, RoomsActivity.class);
-                        intent.putExtra("home", homesList.get(getAdapterPosition()));
-                        context.startActivity(intent);
-                    }
-                }
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, RoomsActivity.class);
+                intent.putExtra("home", homesList.get(getAdapterPosition()));
+                context.startActivity(intent);
             });
-        }
-
-        private boolean isTwoPan() {
-            // View view = itemView.findViewById(R.id.details_fragment);
-            // return view != null;
-            return false;
         }
     }
 

@@ -57,7 +57,7 @@ public class RoomsActivity extends AppCompatActivity {
 
         RoomsCustomAdapter roomsCustomAdapter = new RoomsCustomAdapter(this, roomsList);
 
-        GridLayoutManager mLayoutManager = new GridLayoutManager(this ,2);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setAddDuration(1000);
@@ -66,5 +66,11 @@ public class RoomsActivity extends AppCompatActivity {
         recyclerView.setAdapter(roomsCustomAdapter);
 
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RoomActivity"
+    android:background="@color/grayColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <fragment
+            android:id="@+id/objects_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.smartcerist.mobile.fragment.ObjectsFragment"
+            tools:layout="@layout/fragment_objects"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <fragment
+            android:id="@+id/cameras_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.smartcerist.mobile.fragment.CamerasFragment"
+            tools:layout="@layout/fragment_cameras"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"/>
+    </LinearLayout>
+
+</ScrollView>

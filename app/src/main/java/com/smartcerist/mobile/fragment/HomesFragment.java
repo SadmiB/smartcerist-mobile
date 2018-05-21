@@ -24,6 +24,7 @@ import com.smartcerist.mobile.util.UserPreferenceManager;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -84,13 +85,10 @@ public class HomesFragment extends Fragment {
     private void handleError(Throwable error) {
         if (error instanceof HttpException) {
 
-            Gson gson = new GsonBuilder().create();
-
             try {
 
-                String errorBody = ((HttpException) error).response().errorBody().string();
-                Response response = gson.fromJson(errorBody,Response.class);
-                showSnackBarMessage(response.getEmail());
+                String errorBody = Objects.requireNonNull(((HttpException) error).response().errorBody()).string();
+                showSnackBarMessage(errorBody);
 
             } catch (IOException e) {
                 e.printStackTrace();

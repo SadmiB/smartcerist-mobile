@@ -138,13 +138,13 @@ public class SigninFragment extends Fragment {
 
             showSnackBarMessage("Network Error !");
         }
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 
 
     private void handleResponse(Response response) {
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.INVISIBLE);
         if(response.getEmail() != null){
             UserPreferenceManager userPreferenceManager = new UserPreferenceManager(getActivity());
             boolean feedback = userPreferenceManager.saveConnectedUser(response.getEmail(), response.getToken());
