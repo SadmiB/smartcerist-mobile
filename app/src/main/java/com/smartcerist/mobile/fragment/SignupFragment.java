@@ -44,7 +44,7 @@ public class SignupFragment extends Fragment {
     Button signun_btn;
     TextInputLayout  ti_first_name, ti_last_name, ti_email, ti_password, ti_confirm_password;
 
-    ProgressDialog progressDialog;
+    ProgressBar progressBar;
 
     public SignupFragment() {
         // Required empty public constructor
@@ -73,6 +73,7 @@ public class SignupFragment extends Fragment {
         String lastName = et_last_name.getText().toString();
         String email = et_email.getText().toString();
         String password = et_password.getText().toString();
+        String confirm_password = et_confirm_password.getText().toString();
 
         int err = 0;
 
@@ -81,18 +82,29 @@ public class SignupFragment extends Fragment {
             ti_email.setError("Email should be valid !");
         }
 
+        if(!Validation.validateFields(firstName)){
+            err++;
+            ti_first_name.setError("First should not be empty !");
+        }
+
+        if(!Validation.validateFields(lastName)){
+            err++;
+            ti_last_name.setError("First should not be empty !");
+        }
+
         if(!Validation.validateFields(password)){
             err++;
             ti_password.setError("Password should not be empty !");
         }
 
-        if(err == 0) {
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("Signing up..");
-            progressDialog.setIndeterminate(true);
-            progressDialog.setCancelable(true);
-            progressDialog.show();
+        if(!Validation.validateFields(confirm_password)){
+            err++;
+            ti_password.setError("Password confirmation should not be empty !");
+        }
 
+        if(err == 0) {
+
+            progressBar.setVisibility(View.VISIBLE);
             signupProcess(firstName, lastName, email, password);
         }
     }
@@ -117,6 +129,7 @@ public class SignupFragment extends Fragment {
         ti_email = view.findViewById(R.id.ti_email);
         ti_password = view.findViewById(R.id.ti_password);
         ti_confirm_password = view.findViewById(R.id.ti_confirm_password);
+        progressBar = view.findViewById(R.id.progressBar);
     }
 
     private void signupProcess(String firstName, String lastName, String email, String password) {
@@ -131,7 +144,6 @@ public class SignupFragment extends Fragment {
     }
 
     private void handleError(Throwable error) {
-        progressDialog.dismiss();
         if (error instanceof HttpException) {
 
             Gson gson = new GsonBuilder().create();
@@ -149,13 +161,13 @@ public class SignupFragment extends Fragment {
 
             showSnackBarMessage("Network Error !");
         }
-
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
 
     private void handleResponse(Response response) {
 
-        progressDialog.dismiss();
+        progressBar.setVisibility(View.INVISIBLE);
         if(response.getEmail() != null){
             UserPreferenceManager userPreferenceManager = new UserPreferenceManager(getActivity());
             userPreferenceManager.saveConnectedUser(response.getEmail(), response.getToken());

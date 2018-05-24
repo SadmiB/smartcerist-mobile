@@ -6,6 +6,7 @@
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="fbColor">#365899</color>
     <color name="black_overlay">#6d727c</color>
+    <color name="grayColor">#D3D3D3</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>

@@ -3,11 +3,6 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
-        <entry key="imageWizard">
-          <value>
-            <PersistentState />
-          </value>
-        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -23,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/usr/local/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_exit_to_app_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/usr/local/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/notification/ic_power_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,9 +28,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="9e9e9e" />
-                            <entry key="outputName" value="ic_signout" />
+                            <entry key="color" value="0288d1" />
+                            <entry key="height" value="64" />
+                            <entry key="outputName" value="ic_power" />
+                            <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="$USER_HOME$" />
+                            <entry key="width" value="64" />
                           </map>
                         </option>
                       </PersistentState>
