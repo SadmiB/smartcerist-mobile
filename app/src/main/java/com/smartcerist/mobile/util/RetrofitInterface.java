@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.util;
 
 import com.smartcerist.mobile.model.Home;
+import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.model.User;
 
@@ -25,5 +26,11 @@ public interface RetrofitInterface {
 
     @GET("user/homes")
     Observable<List<Home>> getHomes();
+
+    @GET("/users/user")
+    Observable<User> getUserProfile();
+
+    @GET("/events")
+    Observable<List<Notification>> getNotifications();
 
 }
