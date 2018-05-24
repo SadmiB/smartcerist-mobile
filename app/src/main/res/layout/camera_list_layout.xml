@@ -18,22 +18,22 @@
            android:id="@+id/cameras_name"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_margin="4dp"
+           android:layout_margin="8dp"
            android:layout_gravity="center_horizontal"/>
 
        <VideoView
            android:id="@+id/videoView"
            android:layout_width="match_parent"
-           android:layout_height="match_parent" />
+           android:layout_height="300dp"
+           android:layout_margin="16dp"/>
 
        <Button
            android:id="@+id/action_camera"
            android:layout_width="match_parent"
-           android:layout_height="match_parent"
+           android:layout_height="wrap_content"
            android:background="@color/colorPrimary"
            android:text="ON/OFF"
-           android:textColor="@color/colorPrimaryText"
-           android:visibility="invisible"/>
+           android:textColor="@color/colorPrimaryText"/>
 
    </LinearLayout>
 

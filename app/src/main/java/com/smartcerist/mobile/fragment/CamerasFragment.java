@@ -1,7 +1,6 @@
 package com.smartcerist.mobile.fragment;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,16 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.CamerasCustomAdapter;
 import com.smartcerist.mobile.model.Camera;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -31,8 +26,8 @@ public class CamerasFragment extends Fragment {
     RecyclerView mRecyclerView;
     View view;
     List<Camera> camerasList = Arrays.asList(
-            new Camera("Dahua", "rtsp://admin:smartBuilding2017@193.194.91.145/cam/realmonitor?channel=1&subtype=1"),
-            new Camera("Dahua3", "rtsp://admin:smartBuilding2017@193.194.91.145/cam/realmonitor?channel=1&subtype=1")
+            new Camera("Dahua", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
+            , new Camera("Dahua3", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
     );
 
     public CamerasFragment() {

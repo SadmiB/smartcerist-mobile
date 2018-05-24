@@ -1,12 +1,10 @@
 package com.smartcerist.mobile.fragment;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,14 +18,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.smartcerist.mobile.R;
+import com.smartcerist.mobile.activity.MainActivity;
 import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.model.User;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
 import com.smartcerist.mobile.util.Validation;
-
-import com.smartcerist.mobile.R;
-import com.smartcerist.mobile.activity.MainActivity;
 
 import java.io.IOException;
 
