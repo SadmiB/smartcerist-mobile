@@ -9,9 +9,18 @@ public class Room implements Serializable {
     private String[] objects;
     private String[] users;
     private String[] cameras;
+    private ObjectEvent[] events;
 
     public String getName() {
         return name;
+    }
+
+    public ObjectEvent[] getEvents() {
+        return events;
+    }
+
+    public void setEvents(ObjectEvent[] events) {
+        this.events = events;
     }
 
     public void setName(String name) {

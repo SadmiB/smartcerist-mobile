@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.HomesFragment;
 import com.smartcerist.mobile.fragment.NotificationsFragment;
 import com.smartcerist.mobile.fragment.ProfileFragment;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.main_fragment, fragment);
             ft.addToBackStack(null);
             ft.commit();
-        } else if (id == R.id.nav_account) {
+        }else if (id == R.id.nav_account) {
             fragment = new ProfileFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, fragment);

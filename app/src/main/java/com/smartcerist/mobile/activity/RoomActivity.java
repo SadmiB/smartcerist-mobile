@@ -9,14 +9,14 @@ import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Room;
 
 public class RoomActivity extends AppCompatActivity {
-
+    private Room room;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
         Intent intent = getIntent();
-        Room room = (Room) intent.getSerializableExtra("room");
+        this.room = (Room) intent.getSerializableExtra("room");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -26,5 +26,8 @@ public class RoomActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    public Room getRoom(){
+        return this.room;
     }
 }
