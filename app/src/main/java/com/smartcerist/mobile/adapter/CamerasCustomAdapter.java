@@ -1,9 +1,15 @@
 package com.smartcerist.mobile.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,15 +47,20 @@ public class CamerasCustomAdapter extends RecyclerView.Adapter<CamerasCustomAdap
         final Camera camera = camerasList.get(position);
 
         holder.cameraName.setText(camera.getName());
+
         getCameraStream(camera.getSubStream(), holder.videoView, context);
+
         holder.toggleButton.setOnClickListener(v-> toggleCameraProcess());
     }
 
-    private void getCameraStream(String url, VideoView videoView, Context context) {
 
+
+
+    private void getCameraStream(String url, VideoView videoView, Context context) {
+        Log.d("camera", "getCameraStream: " + url + videoView + context);
         //add controls to a MediaPlayer like play, pause.
-        MediaController mc = new MediaController(context);
-        videoView.setMediaController(mc);
+        //MediaController mc = new MediaController(context);
+        //videoView.setMediaController(mc);
         //Set the path of Video or URI
         videoView.setVideoURI(Uri.parse(url));
         //Set the focus
@@ -71,7 +82,7 @@ public class CamerasCustomAdapter extends RecyclerView.Adapter<CamerasCustomAdap
         VideoView videoView;
         Button toggleButton;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             cameraName = itemView.findViewById(R.id.cameras_name);
             videoView = itemView.findViewById(R.id.videoView);

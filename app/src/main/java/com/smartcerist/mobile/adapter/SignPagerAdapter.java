@@ -8,11 +8,11 @@ import com.smartcerist.mobile.fragment.SigninFragment;
 import com.smartcerist.mobile.fragment.SignupFragment;
 
 
-public class PagerAdapter extends FragmentStatePagerAdapter{
+public class SignPagerAdapter extends FragmentStatePagerAdapter{
 
     int PAGES_NUM;
 
-    public PagerAdapter(FragmentManager fm, int PAGES_NUM) {
+    public SignPagerAdapter(FragmentManager fm, int PAGES_NUM) {
         super(fm);
         this.PAGES_NUM = PAGES_NUM;
     }

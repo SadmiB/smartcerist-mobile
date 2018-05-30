@@ -47,4 +47,7 @@
     <string name="first_name">First Name</string>
     <string name="confirm_password">Confirm password</string>
     <string name="google">Sign with Google</string>
+    <string name="title_home">Objects</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_history">History</string>
 </resources>

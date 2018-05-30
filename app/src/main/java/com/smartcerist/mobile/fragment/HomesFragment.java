@@ -13,12 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
 import com.smartcerist.mobile.model.Home;
-import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
 

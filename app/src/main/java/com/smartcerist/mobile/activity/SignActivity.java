@@ -1,19 +1,14 @@
 package com.smartcerist.mobile.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.smartcerist.mobile.R;
-import com.smartcerist.mobile.adapter.PagerAdapter;
+import com.smartcerist.mobile.adapter.SignPagerAdapter;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -30,7 +25,7 @@ public class SignActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        final PagerAdapter adapter = new PagerAdapter
+        final SignPagerAdapter adapter = new SignPagerAdapter
                 (getSupportFragmentManager(), 2);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
