@@ -13,6 +13,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -34,7 +45,8 @@
         android:contentDescription="object icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/object_name"
@@ -45,7 +57,8 @@
         android:text="my object"
         app:layout_constraintBottom_toTopOf="@+id/action_btn"
         app:layout_constraintStart_toEndOf="@+id/object_icon"
-        app:layout_constraintTop_toTopOf="@+id/object_icon" />
+        app:layout_constraintTop_toTopOf="@+id/object_icon"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/object_value"
@@ -57,7 +70,8 @@
         android:text="object value"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/object_icon"
-        app:layout_constraintTop_toBottomOf="@+id/object_name" />
+        app:layout_constraintTop_toBottomOf="@+id/object_name"
+        android:layout_marginLeft="8dp" />
 
     <Switch
         android:id="@+id/action_btn"
@@ -70,8 +84,8 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginRight="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>
