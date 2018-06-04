@@ -50,4 +50,5 @@
     <string name="title_home">Objects</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_history">History</string>
+    <string name="settings">settings</string>
 </resources>
