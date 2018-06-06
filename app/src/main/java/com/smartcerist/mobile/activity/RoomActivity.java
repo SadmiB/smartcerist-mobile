@@ -9,10 +9,12 @@ import android.os.Bundle;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.fragment.AutomationFragment;
+import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.MonitorFragment;
 import com.smartcerist.mobile.model.Room;
 
 public class RoomActivity extends AppCompatActivity {
+    private Room room;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -38,7 +40,7 @@ public class RoomActivity extends AppCompatActivity {
 
                         return true;
                     case R.id.navigation_history:
-                        fragment = new AutomationFragment();
+                        fragment = new HistoryFragment();
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.room_fragment, fragment);
                         ft.addToBackStack(null);
@@ -55,11 +57,12 @@ public class RoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_room);
 
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
-        Room room = (Room) intent.getSerializableExtra("room");
+        this.room = (Room) intent.getSerializableExtra("room");
 
 
         getSupportFragmentManager().beginTransaction()
@@ -74,5 +77,8 @@ public class RoomActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    public Room getRoom(){
+        return this.room;
     }
 }
