@@ -67,18 +67,33 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
             //holder.action_btn.setOnClickListener(v -> toggleObjectStateProcess(object));
         }
 
+        switch (object.getType()){
+            case led:
+                holder.object_value.setText("1");
+                break;
+            case light:
+                holder.object_value.setText(String.format("%s","534") );
+                break;
+            case power:
+                holder.object_value.setText(String.format("%s","416"));
+                break;
+            case presence:
+                holder.object_value.setText(String.format("%s","1"));
+                break;
+            case temperature:
+                holder.object_value.setText(String.format("%s","23"));
+                break;
+        }
+
         holder.toolbar.inflateMenu(R.menu.card_menu);
-        holder.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.settings:
-                        ObjectSettingsFragment fragment = new ObjectSettingsFragment();
-                        fragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ObjectSettingsFragment.TAG);
-                        break;
-                }
-                return false;
+        holder.toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()){
+                case R.id.settings:
+                    ObjectSettingsFragment fragment = new ObjectSettingsFragment();
+                    fragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ObjectSettingsFragment.TAG);
+                    break;
             }
+            return false;
         });
     }
 
