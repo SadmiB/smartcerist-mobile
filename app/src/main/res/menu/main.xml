@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_notification"
+        android:title="@string/action_notifications"
+        android:actionLayout="@layout/notification_btn"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom" />
+
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_local"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Local"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_internet"
+        android:orderInCategory="100"
+        android:title="Internet"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_bluetooth"
+        android:orderInCategory="100"
+        android:title="Bluetooth"
         app:showAsAction="never" />
 </menu>

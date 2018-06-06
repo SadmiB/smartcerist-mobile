@@ -19,6 +19,8 @@ public class User {
     private Boolean status;
     private String picture;
     private String[] homes;
+    private Notification[] notifications;
+    private Permission[] rooms;
 
     public User(String email, String password) {
         this.email = email;
@@ -30,6 +32,14 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public Notification[] getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Notification[] notifications) {
+        this.notifications = notifications;
     }
 
     public String getFirstName() {
@@ -158,5 +168,13 @@ public class User {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public Permission[] getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Permission[] rooms) {
+        this.rooms = rooms;
     }
 }

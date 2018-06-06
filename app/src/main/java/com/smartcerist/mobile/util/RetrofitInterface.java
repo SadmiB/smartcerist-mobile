@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.util;
 
 import com.smartcerist.mobile.model.Home;
+import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.model.Room;
 import com.smartcerist.mobile.model.User;
@@ -25,10 +26,14 @@ public interface RetrofitInterface {
     @GET("user/homes")
     Observable<List<Home>> getHomes();
 
+    @GET("/users/user")
+    Observable<User> getUserProfile();
+
+    @GET("/user/notifications/all")
+    Observable<List<Notification>> getNotifications();
     @PUT("/api{path}") // path example: /lights/led3
     Observable<String> toggleObjectState(@Path("path") String path, @Body String value);
 
     @GET("/api{path}")
     Observable<String> getObjectMeasure(@Path("path") String path);
-
 }
