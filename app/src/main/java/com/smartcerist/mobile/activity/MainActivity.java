@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.HomesFragment;
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        TextView email_tv = navigationView.getHeaderView(0).findViewById(R.id.email);
+        UserPreferenceManager userPreferenceManager = new UserPreferenceManager(this);
+        email_tv.setText(userPreferenceManager.getConnectedUser());
 
     }
 

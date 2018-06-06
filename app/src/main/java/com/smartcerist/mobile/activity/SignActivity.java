@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.SignPagerAdapter;
+import com.smartcerist.mobile.util.UserPreferenceManager;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -21,6 +22,12 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_sign);
+
+        UserPreferenceManager userPreferenceManager = new UserPreferenceManager(this);
+        if (userPreferenceManager.isConnected() != null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
