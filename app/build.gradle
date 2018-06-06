@@ -25,6 +25,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst 'about.html'
+        pickFirst 'edl-v10.html'
+        pickFirst 'epl-v10.html'
+        pickFirst 'notice.html'
+        pickFirst 'META-INF/INDEX.LIST'
+        pickFirst 'META-INF/LICENSE'
+        pickFirst 'META-INF/io.netty.versions.properties'
+        pickFirst 'LICENSE-2.0.txt'
+        exclude   '**/*.jks'
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8

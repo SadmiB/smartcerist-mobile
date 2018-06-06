@@ -168,7 +168,6 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
 
     private void toggleObjectStateProcess(Object object) {
 
-
         String path = object.getPath();
         String value = (object.getMeasure().equals("1")) ? "0" : "1";
         mCompositeDisposable.add(NetworkUtil.getRetrofit().toggleObjectState(path, value)
