@@ -1,9 +1,11 @@
 package com.smartcerist.mobile.model;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 24/05/18.
  */
-public class ObjectEvent {
+public class ObjectEvent implements Serializable {
     private String type;
     private String date;
     private String category;

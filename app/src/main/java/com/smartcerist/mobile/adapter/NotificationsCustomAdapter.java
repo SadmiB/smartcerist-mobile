@@ -50,7 +50,7 @@ public class NotificationsCustomAdapter extends RecyclerView.Adapter<Notificatio
     public void onBindViewHolder(@NonNull NotificationsCustomAdapter.MyViewHolder holder, int position) {
         final Notification notification = notificationsList.get(position);
         holder.date.setText(notification.getDate());
-        holder.type.setText(notification.getType());
+        holder.category.setText(notification.getCategory());
         holder.msg.setText(notification.getMessage());
         //DeviceService deviceService = new DeviceService(context);
         //String density = deviceService.getScreenDensity();
@@ -64,7 +64,7 @@ public class NotificationsCustomAdapter extends RecyclerView.Adapter<Notificatio
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView type;
+        TextView category;
         TextView date;
         TextView msg;
 
@@ -72,7 +72,7 @@ public class NotificationsCustomAdapter extends RecyclerView.Adapter<Notificatio
             super(itemView);
 
             date = itemView.findViewById(R.id.notification_date);
-            type = itemView.findViewById(R.id.notification_type);
+            category = itemView.findViewById(R.id.notification_category);
             msg = itemView.findViewById(R.id.notification_msg);
 
             itemView.setOnClickListener(new View.OnClickListener() {

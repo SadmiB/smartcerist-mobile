@@ -49,7 +49,7 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final ObjectEvent event = eventsList.get(position);
         holder.date.setText(event.getDate());
-        holder.type.setText(event.getType());
+        holder.category.setText(event.getCategory());
         holder.message.setText(event.getMessage());
         //DeviceService deviceService = new DeviceService(context);
         //String density = deviceService.getScreenDensity();
@@ -65,14 +65,14 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView date;
-        TextView type;
+        TextView category;
         TextView message;
 
         MyViewHolder(View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.event_date);
-            type = itemView.findViewById(R.id.event_type);
+            category = itemView.findViewById(R.id.event_category);
             message = itemView.findViewById(R.id.event_message);
 
         }

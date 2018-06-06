@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Room implements Serializable {
     private String _id;
@@ -9,17 +10,17 @@ public class Room implements Serializable {
     private String[] objects;
     private String[] users;
     private String[] cameras;
-    private ObjectEvent[] events;
+    private List<ObjectEvent> events;
 
     public String getName() {
         return name;
     }
 
-    public ObjectEvent[] getEvents() {
+    public List<ObjectEvent> getEvents() {
         return events;
     }
 
-    public void setEvents(ObjectEvent[] events) {
+    public void setEvents(List<ObjectEvent> events) {
         this.events = events;
     }
 
