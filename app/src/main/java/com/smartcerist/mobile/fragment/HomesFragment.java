@@ -84,7 +84,10 @@ public class HomesFragment extends Fragment {
 
             try {
 
-                String errorBody = Objects.requireNonNull(((HttpException) error).response().errorBody()).string();
+                String errorBody = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    errorBody = Objects.requireNonNull(((HttpException) error).response().errorBody()).string();
+                }
                 showSnackBarMessage(errorBody);
 
             } catch (IOException e) {
