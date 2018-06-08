@@ -15,6 +15,7 @@ import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.ObjectEvent;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
 
     public HistoryCustomAdapter(Context context, List<ObjectEvent> eventsList){
         this.context = context;
+        Collections.reverse(eventsList);
         this.eventsList = eventsList;
     }
 
