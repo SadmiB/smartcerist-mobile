@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
 import com.smartcerist.mobile.adapter.RoomsCustomAdapter;
+import com.smartcerist.mobile.fragment.RulesFragment;
 import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.model.Room;
@@ -66,11 +67,19 @@ public class RoomsActivity extends AppCompatActivity {
         recyclerView.setAdapter(roomsCustomAdapter);
 
         progressBar.setVisibility(View.GONE);
+
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void showRules(View view) {
+        RulesFragment rulesFragment = new RulesFragment();
+        rulesFragment.show(getSupportFragmentManager(), rulesFragment.getTag());
     }
 }

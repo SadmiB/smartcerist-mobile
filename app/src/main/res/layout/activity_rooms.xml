@@ -36,6 +36,13 @@
 
     </ScrollView>
 
-    <include layout="@layout/fragment_rules"/>
-
+    <Button
+        android:id="@+id/peeker_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rules"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:onClick="showRules"/>
 </android.support.design.widget.CoordinatorLayout>

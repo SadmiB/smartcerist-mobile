@@ -41,7 +41,7 @@ public class CamerasFragment extends Fragment {
         if(view==null)
             view = inflater.inflate(R.layout.fragment_cameras, container, false);
 
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.cameras_list);
+        mRecyclerView = view.findViewById(R.id.cameras_list);
 
         CamerasCustomAdapter camerasCustomAdapter = new CamerasCustomAdapter(getActivity(), camerasList);
 
