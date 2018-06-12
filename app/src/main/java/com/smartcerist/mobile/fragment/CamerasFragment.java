@@ -26,8 +26,8 @@ public class CamerasFragment extends Fragment {
     RecyclerView mRecyclerView;
     View view;
     List<Camera> camerasList = Arrays.asList(
-            new Camera("Dahua", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
-            , new Camera("Dahua3", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
+            new Camera("Dahua", "rtsp://admin:smartBuilding2017@10.0.88.122/cam/realmonitor?channel=1&subtype=1")
+            , new Camera("Dahua3", "rtsp://admin:smartBuilding2017@10.0.88.122/cam/realmonitor?channel=1&subtype=1")
     );
 
     public CamerasFragment() {

@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.smartcerist.mobile.R;
@@ -68,12 +69,22 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         final Object object = objectsList.get(position);
 
 
+        holder.progressBar.setVisibility(View.VISIBLE);
+        CoapGetTask task = new CoapGetTask(holder);
+        String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+        startTask.execute(task, url);
+
         holder.object_icon.setBackgroundResource(getIcon(object.getType()));
         holder.object_name.setText(object.getName());
 
         if(object.getType().toString().equals(ObjectsTypes.led.toString()) || object.getType().toString().equals(ObjectsTypes.ventilator.toString())) {
             holder.action_btn.setVisibility(View.VISIBLE);
-            //holder.action_btn.setOnClickListener(v -> toggleObjectStateProcess(object));
+            holder.action_btn.setEnabled(false);
+            holder.action_btn.setOnClickListener(v -> {
+                String payload = object.getMeasure().equals("0") ? "1" : "0";
+                new CoapPutTask(holder).execute(url, payload);
+                //startTask.execute(task, url);
+            });
         }
 
         holder.toolbar.inflateMenu(R.menu.card_menu);
@@ -87,9 +98,6 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
             return false;
         });
 
-        CoapGetTask task = new CoapGetTask(holder);
-        String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
-        startTask.execute(task, url);
 
     }
 
@@ -136,7 +144,7 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         ImageView object_icon;
         TextView object_name;
         TextView object_value;
-        Button action_btn;
+        Switch action_btn;
         ProgressBar progressBar;
         Toolbar toolbar;
 
@@ -157,17 +165,47 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION ) {
                     progressBar.setVisibility(View.VISIBLE);
-
+                    CoapGetTask task = new CoapGetTask(this);
+                    Object object = objectsList.get(position);
+                    String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+                    startTask.execute(task, url);
                 }
             });
         }
     }
 
-    private void toggleObjectStateProcess(Object object) {
+    class CoapPutTask extends AsyncTask<String, String, CoapResponse> {
 
-        String path = object.getPath();
-        String value = (object.getMeasure().equals("1")) ? "0" : "1";
 
+        MyViewHolder holder;
+
+        CoapPutTask(MyViewHolder holder) {
+            this.holder = holder;
+        }
+
+        @Override
+        protected CoapResponse doInBackground(String... params) {
+            CoapClient coapClient = new CoapClient(params[0]);
+            String payload = params[1];
+            return coapClient.put(payload,0);
+        }
+
+        @Override
+        protected void onPostExecute(CoapResponse coapResponse) {
+            if(coapResponse!=null){
+                String value = coapResponse.getResponseText();
+                holder.object_value.setText(value);
+                int position = holder.getAdapterPosition();
+                Object object = objectsList.get(position);
+                object.setMeasure(value);
+                holder.action_btn.setEnabled(true);
+            }
+            else{
+                holder.object_value.setText(String.format("%s", "Disconnected"));
+                showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.action_btn.setEnabled(false);
+            }
+        }
     }
 
 
@@ -196,12 +234,27 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         @Override
         protected void onPostExecute(CoapResponse coapResponse) {
             if(coapResponse!=null) {
-                holder.object_value.setText(coapResponse.getResponseText());
-                Log.d(holder.object_name.getText().toString(), "onPostExecute: " + coapResponse.advanced().getRTT()+"ms");
+                String value = coapResponse.getResponseText();
+                holder.object_value.setText(value);
+                int position = holder.getAdapterPosition();
+                Object object = objectsList.get(position);
+                object.setMeasure(value);
+                if(holder.action_btn.getVisibility() == View.VISIBLE){
+                    holder.action_btn.setEnabled(false);
+                    if (value.equals("1"))
+                        holder.action_btn.setChecked(true);
+                    else
+                        holder.action_btn.setChecked(false);
+                }
+                holder.action_btn.setEnabled(true);
+                //String objectName = holder.object_name.getText().toString().toLowerCase();
+                //Log.d(objectName, "onPostExecute: " + coapResponse.advanced().getRTT()+"ms");
             }else{
                 holder.object_value.setText(String.format("%s", "Disconnected"));
                 showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.action_btn.setEnabled(false);
             }
+            holder.progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
