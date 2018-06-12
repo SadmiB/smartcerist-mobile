@@ -72,9 +72,11 @@ public class CamerasCustomAdapter extends RecyclerView.Adapter<CamerasCustomAdap
         if(holder.videoView.isPlaying()){
             holder.videoView.pause();
             Toast.makeText(context, "pause..", Toast.LENGTH_SHORT).show();
+            holder.toggleButton.setText(String.format("%s", "RESUME"));
         }else{
             holder.videoView.start();
             Toast.makeText(context, "resume..", Toast.LENGTH_SHORT).show();
+            holder.toggleButton.setText(String.format("%s", "PAUSE"));
         }
     }
 

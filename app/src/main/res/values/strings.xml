@@ -52,4 +52,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_history">History</string>
     <string name="settings">settings</string>
+    <string name="pause">PAUSE</string>
+    <string name="rules">RULES</string>
 </resources>
