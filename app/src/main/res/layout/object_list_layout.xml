@@ -52,26 +52,28 @@
         android:id="@+id/object_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="my object"
         app:layout_constraintBottom_toTopOf="@+id/action_btn"
         app:layout_constraintStart_toEndOf="@+id/object_icon"
         app:layout_constraintTop_toTopOf="@+id/object_icon"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/object_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="object value"
+        android:text="\?"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/object_icon"
         app:layout_constraintTop_toBottomOf="@+id/object_name"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <Switch
         android:id="@+id/action_btn"

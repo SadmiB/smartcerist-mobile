@@ -52,4 +52,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_history">History</string>
     <string name="settings">settings</string>
+    <string name="pause">PAUSE</string>
+    <string name="rules">RULES</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.</string>
 </resources>

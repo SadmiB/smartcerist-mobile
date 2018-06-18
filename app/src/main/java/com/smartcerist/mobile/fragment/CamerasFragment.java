@@ -26,8 +26,8 @@ public class CamerasFragment extends Fragment {
     RecyclerView mRecyclerView;
     View view;
     List<Camera> camerasList = Arrays.asList(
-            new Camera("Dahua", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
-            , new Camera("Dahua3", "rtsp://admin:smartBuilding2017@192.168.8.102/cam/realmonitor?channel=1&subtype=1")
+            new Camera("Dahua", "rtsp://admin:smartBuilding2017@10.0.88.122/cam/realmonitor?channel=1&subtype=1")
+            , new Camera("Dahua3", "rtsp://admin:smartBuilding2017@10.0.88.122/cam/realmonitor?channel=1&subtype=1")
     );
 
     public CamerasFragment() {
@@ -41,7 +41,7 @@ public class CamerasFragment extends Fragment {
         if(view==null)
             view = inflater.inflate(R.layout.fragment_cameras, container, false);
 
-        mRecyclerView = (RecyclerView)view.findViewById(R.id.cameras_list);
+        mRecyclerView = view.findViewById(R.id.cameras_list);
 
         CamerasCustomAdapter camerasCustomAdapter = new CamerasCustomAdapter(getActivity(), camerasList);
 

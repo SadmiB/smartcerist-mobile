@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.smartcerist.mobile.R;
@@ -50,7 +51,7 @@ public class CamerasCustomAdapter extends RecyclerView.Adapter<CamerasCustomAdap
 
         getCameraStream(camera.getSubStream(), holder.videoView, context);
 
-        holder.toggleButton.setOnClickListener(v-> toggleCameraProcess());
+        holder.toggleButton.setOnClickListener(v-> toggleCamera(holder));
     }
 
 
@@ -67,8 +68,16 @@ public class CamerasCustomAdapter extends RecyclerView.Adapter<CamerasCustomAdap
         videoView.start();
     }
 
-    private void toggleCameraProcess() {
-
+    private void toggleCamera(MyViewHolder holder) {
+        if(holder.videoView.isPlaying()){
+            holder.videoView.pause();
+            Toast.makeText(context, "pause..", Toast.LENGTH_SHORT).show();
+            holder.toggleButton.setText(String.format("%s", "RESUME"));
+        }else{
+            holder.videoView.start();
+            Toast.makeText(context, "resume..", Toast.LENGTH_SHORT).show();
+            holder.toggleButton.setText(String.format("%s", "PAUSE"));
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.smartcerist.mobile.model;
 public enum ObjectsTypes {
     led ("LED"),
     temperature("TEMPERATURE"),
+    ventilator("VENTILATOR"),
     power("POWER"),
     light("LIGHT"),
     presence("PRESENCE");

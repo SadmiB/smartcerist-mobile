@@ -1,20 +1,24 @@
 package com.smartcerist.mobile.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.smartcerist.mobile.R;
@@ -22,28 +26,33 @@ import com.smartcerist.mobile.fragment.ObjectSettingsFragment;
 import com.smartcerist.mobile.model.Object;
 import com.smartcerist.mobile.model.ObjectsIcons;
 import com.smartcerist.mobile.model.ObjectsTypes;
-import com.smartcerist.mobile.util.NetworkUtil;
 
-import java.io.IOException;
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+
 import java.util.List;
-import java.util.Objects;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.HttpException;
+
+
 
 public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdapter.MyViewHolder> {
+
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
+    private static final int CORE_POOL_SIZE = CPU_COUNT + 1;
+    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
+    private static final BlockingQueue<Runnable> sPoolWorkQueue =
+            new LinkedBlockingQueue<Runnable>(128);
+
 
     private Context context;
     private List<Object> objectsList;
 
-    private CompositeDisposable mCompositeDisposable;
-
     public ObjectsCustomAdapter(Context context, List<Object> objectsList, CompositeDisposable mDisposable) {
         this.context = context;
         this.objectsList = objectsList;
-        this.mCompositeDisposable = mDisposable;
     }
 
     @NonNull
@@ -58,28 +67,38 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Object object = objectsList.get(position);
+
+
+        holder.progressBar.setVisibility(View.VISIBLE);
+        CoapGetTask task = new CoapGetTask(holder);
+        String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+        startTask.execute(task, url);
+
         holder.object_icon.setBackgroundResource(getIcon(object.getType()));
         holder.object_name.setText(object.getName());
-        holder.object_value.setText(object.getMeasure());
 
-        if(object.getType().toString().equals(ObjectsTypes.led.toString())) {
+        if(object.getType().toString().equals(ObjectsTypes.led.toString()) || object.getType().toString().equals(ObjectsTypes.ventilator.toString())) {
             holder.action_btn.setVisibility(View.VISIBLE);
-            //holder.action_btn.setOnClickListener(v -> toggleObjectStateProcess(object));
+            holder.action_btn.setEnabled(false);
+            holder.action_btn.setOnClickListener(v -> {
+                String payload = object.getMeasure().equals("0") ? "1" : "0";
+                new CoapPutTask(holder).execute(url, payload);
+                //startTask.execute(task, url);
+            });
         }
 
         holder.toolbar.inflateMenu(R.menu.card_menu);
-        holder.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.settings:
-                        ObjectSettingsFragment fragment = new ObjectSettingsFragment();
-                        fragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ObjectSettingsFragment.TAG);
-                        break;
-                }
-                return false;
+        holder.toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()){
+                case R.id.settings:
+                    ObjectSettingsFragment fragment = new ObjectSettingsFragment();
+                    fragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ObjectSettingsFragment.TAG);
+                    break;
             }
+            return false;
         });
+
+
     }
 
     private int getIcon(ObjectsTypes objectType) {
@@ -99,6 +118,10 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
 
             case temperature:
                 objectIcon = ObjectsIcons.temperature;
+            break;
+
+            case ventilator:
+                objectIcon = ObjectsIcons.ventilator;
             break;
 
             case presence:
@@ -121,7 +144,7 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         ImageView object_icon;
         TextView object_name;
         TextView object_value;
-        Button action_btn;
+        Switch action_btn;
         ProgressBar progressBar;
         Toolbar toolbar;
 
@@ -142,63 +165,107 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                 int position = getAdapterPosition();
                 if(position != RecyclerView.NO_POSITION ) {
                     progressBar.setVisibility(View.VISIBLE);
-                    getObjectMeasureProcess(position);
+                    CoapGetTask task = new CoapGetTask(this);
+                    Object object = objectsList.get(position);
+                    String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+                    startTask.execute(task, url);
                 }
             });
-
-
-
         }
     }
 
-    private void toggleObjectStateProcess(Object object) {
+    class CoapPutTask extends AsyncTask<String, String, CoapResponse> {
 
 
-        String path = object.getPath();
-        String value = (object.getMeasure().equals("1")) ? "0" : "1";
-        mCompositeDisposable.add(NetworkUtil.getRetrofit().toggleObjectState(path, value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError));
-    }
+        MyViewHolder holder;
 
+        CoapPutTask(MyViewHolder holder) {
+            this.holder = holder;
+        }
 
+        @Override
+        protected CoapResponse doInBackground(String... params) {
+            CoapClient coapClient = new CoapClient(params[0]);
+            String payload = params[1];
+            return coapClient.put(payload,0);
+        }
 
-
-    private void getObjectMeasureProcess(int position) {
-        Object object = objectsList.get(position);
-        String path = object.getPath();
-        mCompositeDisposable.add(NetworkUtil.getRetrofit().getObjectMeasure(path)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError));
-    }
-
-
-    private void handleResponse(String s) {
-
-    }
-
-    private void showSnackBarMessage(String message){
-        //View parentLayout = findViewById(android.R.id.content);
-        //Snackbar.make(parentLayout, message,Snackbar.LENGTH_SHORT).show();
-    }
-
-    private void handleError(Throwable error)
-    {
-        if (error instanceof HttpException) {
-
-            try {
-
-                String errorBody = Objects.requireNonNull(((HttpException) error).response().errorBody()).string();
-                showSnackBarMessage(errorBody);
-
-            } catch (IOException e) {
-                e.printStackTrace();
+        @Override
+        protected void onPostExecute(CoapResponse coapResponse) {
+            if(coapResponse!=null){
+                String value = coapResponse.getResponseText();
+                holder.object_value.setText(value);
+                int position = holder.getAdapterPosition();
+                Object object = objectsList.get(position);
+                object.setMeasure(value);
+                holder.action_btn.setEnabled(true);
             }
-        } else {
+            else{
+                holder.object_value.setText(String.format("%s", "Disconnected"));
+                showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.action_btn.setEnabled(false);
+            }
+        }
+    }
 
-            showSnackBarMessage("Network Error !");
+
+    private void showSnackBarMessage(String message) {
+        View parentLayout = ((Activity)context).findViewById(android.R.id.content);
+        Snackbar.make(parentLayout, message,Snackbar.LENGTH_SHORT).show();
+    }
+
+
+
+    @SuppressLint("StaticFieldLeak")
+    class CoapGetTask extends AsyncTask<String,String, CoapResponse> {
+
+        private MyViewHolder holder;
+
+        CoapGetTask(MyViewHolder holder) {
+            this.holder = holder;
+        }
+
+        @Override
+        protected CoapResponse doInBackground(String... params) {
+            CoapClient coapClient = new CoapClient(params[0]);
+            return coapClient.get();
+        }
+
+        @Override
+        protected void onPostExecute(CoapResponse coapResponse) {
+            if(coapResponse!=null) {
+                String value = coapResponse.getResponseText();
+                holder.object_value.setText(value);
+                int position = holder.getAdapterPosition();
+                Object object = objectsList.get(position);
+                object.setMeasure(value);
+                if(holder.action_btn.getVisibility() == View.VISIBLE){
+                    holder.action_btn.setEnabled(false);
+                    if (value.equals("1"))
+                        holder.action_btn.setChecked(true);
+                    else
+                        holder.action_btn.setChecked(false);
+                }
+                holder.action_btn.setEnabled(true);
+                //String objectName = holder.object_name.getText().toString().toLowerCase();
+                //Log.d(objectName, "onPostExecute: " + coapResponse.advanced().getRTT()+"ms");
+            }else{
+                holder.object_value.setText(String.format("%s", "Disconnected"));
+                showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.action_btn.setEnabled(false);
+            }
+            holder.progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    static class startTask {
+        public static <P, T extends AsyncTask<P, ?, ?>> void execute(T task) {
+            execute(task, (P[]) null);
+        }
+
+        @SafeVarargs
+        static <P, T extends AsyncTask<P, ?, ?>> void execute(T task, P... params) {
+            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, params);
         }
     }
 }

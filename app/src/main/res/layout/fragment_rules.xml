@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="50dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+     <TextView
+         android:text="@string/rules"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_margin="8dp"
+         android:textColor="@color/white"
+         android:background="@color/colorPrimary"
+         android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rules_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:dividerHeight="10dp"/>
+
+</FrameLayout>

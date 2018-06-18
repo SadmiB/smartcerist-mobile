@@ -32,6 +32,7 @@ public class ObjectsFragment extends Fragment {
     List<Object> objectsList = Arrays.asList(
             new Object("Led3","/lights/led3", ObjectsTypes.led,"2001:4340:1010:22:2ca:29ff:fea2:9512","",""),
             new Object("Light","/lights/adc", ObjectsTypes.light,"2001:4340:1010:22:02a0:44ff:fe66:6b6e","",""),
+            new Object("Ventilator","/lights/ventilator", ObjectsTypes.ventilator,"2001:4340:1010:22:02f5:b6ff:fed2:8e61","",""),
             new Object("Temperature","/lights/temperature", ObjectsTypes.temperature,"2001:4340:1010:22:02f5:b6ff:fed2:8e61","",""),
             new Object("Power","/lights/power", ObjectsTypes.power,"2001:4340:1010:22:027f:08ff:fec7:69b0","",""),
             new Object("Presence","/lights/presence", ObjectsTypes.presence,"2001:4340:1010:22:02a0:44ff:fe66:6b6e","","")
