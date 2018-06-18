@@ -22,6 +22,8 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
 
+import com.github.arturogutierrez.Badges;
+import com.github.arturogutierrez.BadgesNotSupportedException;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
 import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.HomesFragment;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     List<Notification> notificationsList;
     ConstraintLayout notificationCount ;
     TextView textCartItemCount;
-    int mCartItemCount = 0;
+    int mCartItemCount = 10;
     String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,12 @@ public class MainActivity extends AppCompatActivity
                     if (textCartItemCount.getVisibility() != View.VISIBLE) {
                         textCartItemCount.setVisibility(View.VISIBLE);
                     }
+                }
+
+                try {
+                    Badges.setBadge(MainActivity.this, mCartItemCount);
+                }catch (BadgesNotSupportedException e){
+                    Toast.makeText(MainActivity.this,"that was an error!", Toast.LENGTH_SHORT).show();
                 }
                 //notificationNumber.setText(""+notificationsList.size());
 

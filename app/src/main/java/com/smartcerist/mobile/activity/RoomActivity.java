@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.smartcerist.mobile.R;
-import com.smartcerist.mobile.fragment.AutomationFragment;
+import com.smartcerist.mobile.fragment.AnalyticsFragment;
 import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.MonitorFragment;
 import com.smartcerist.mobile.model.Room;
@@ -32,7 +32,7 @@ public class RoomActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_dashboard:
 
-                        fragment = new AutomationFragment();
+                        fragment = new AnalyticsFragment();
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.room_fragment, fragment);
                         ft.addToBackStack(null);
