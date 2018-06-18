@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
 import com.smartcerist.mobile.model.Home;
+import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
 
@@ -42,6 +43,7 @@ public class HomesFragment extends Fragment {
     private CompositeDisposable mSubscriptions;
 
     List<Home> homesList ;
+
 
 
     public HomesFragment() {

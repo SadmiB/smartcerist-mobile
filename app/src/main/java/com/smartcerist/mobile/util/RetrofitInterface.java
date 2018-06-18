@@ -31,6 +31,10 @@ public interface RetrofitInterface {
 
     @GET("/user/notifications/all")
     Observable<List<Notification>> getNotifications();
+
+    @GET("/user/notifications")
+    Observable<List<Notification>> getNotificationsNotSeen();
+
     @PUT("/api{path}") // path example: /lights/led3
     Observable<String> toggleObjectState(@Path("path") String path, @Body String value);
 

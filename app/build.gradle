@@ -61,5 +61,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
+    implementation 'com.github.arturogutierrez:badges:1.0.5@aar'
+    implementation 'com.jjoe64:graphview:4.2.2'
     implementation 'org.eclipse.californium:californium-core:1.1.0-SNAPSHOT'
 }

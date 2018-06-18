@@ -13,7 +13,7 @@ public class Home implements Serializable {
     private String lon;
     private String lat;
     private int picture;
-    private String owner;
+    private User owner;
     private String[] servers;
     private List<Room> rooms;
 
@@ -86,11 +86,11 @@ public class Home implements Serializable {
         this.picture = picture;
     }
 
-    public String getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

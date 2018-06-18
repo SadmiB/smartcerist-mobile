@@ -15,6 +15,7 @@ import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.ObjectEvent;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
 
     public HistoryCustomAdapter(Context context, List<ObjectEvent> eventsList){
         this.context = context;
+        Collections.reverse(eventsList);
         this.eventsList = eventsList;
     }
 
@@ -49,7 +51,6 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final ObjectEvent event = eventsList.get(position);
         holder.date.setText(event.getDate());
-        holder.category.setText(event.getCategory());
         holder.message.setText(event.getMessage());
         //DeviceService deviceService = new DeviceService(context);
         //String density = deviceService.getScreenDensity();
@@ -65,14 +66,12 @@ public class HistoryCustomAdapter extends RecyclerView.Adapter<HistoryCustomAdap
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView date;
-        TextView category;
         TextView message;
 
         MyViewHolder(View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.event_date);
-            category = itemView.findViewById(R.id.event_category);
             message = itemView.findViewById(R.id.event_message);
 
         }

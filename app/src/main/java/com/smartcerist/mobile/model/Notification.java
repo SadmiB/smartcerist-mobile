@@ -1,10 +1,12 @@
 package com.smartcerist.mobile.model;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 18/05/18.
  */
 
-public class Notification {
+public class Notification implements Serializable{
     private String homeId;
     private String roomId;
     private String userId;

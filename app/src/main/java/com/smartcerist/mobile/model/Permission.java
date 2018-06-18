@@ -1,10 +1,12 @@
 package com.smartcerist.mobile.model;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 24/05/18.
  */
 
-public class Permission {
+public class Permission implements Serializable{
     private String homeId;
     private String roomId;
     private String permission;
