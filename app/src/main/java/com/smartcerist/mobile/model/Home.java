@@ -8,7 +8,7 @@ public class Home implements Serializable {
     private String name;
     private String address;
     private String email;
-    private String telephone;
+    private String phone;
     private String country;
     private String lon;
     private String lat;
@@ -16,6 +16,7 @@ public class Home implements Serializable {
     private User owner;
     private String[] servers;
     private List<Room> rooms;
+    private List<Rule> rules;
 
     public Home(String name, int picture) {
         this.name = name;
@@ -46,12 +47,20 @@ public class Home implements Serializable {
         this.email = email;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public List<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<Rule> rules) {
+        this.rules = rules;
     }
 
     public String getCountry() {

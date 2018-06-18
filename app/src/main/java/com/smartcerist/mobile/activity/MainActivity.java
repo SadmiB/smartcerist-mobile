@@ -11,27 +11,21 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.arturogutierrez.Badges;
 import com.github.arturogutierrez.BadgesNotSupportedException;
-import com.smartcerist.mobile.adapter.HomesCustomAdapter;
-import com.smartcerist.mobile.fragment.HistoryFragment;
+import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.fragment.HomesFragment;
 import com.smartcerist.mobile.fragment.NotificationsFragment;
 import com.smartcerist.mobile.fragment.ProfileFragment;
-import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.fragment.SettingsFragment;
-import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
@@ -140,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                 try {
                     Badges.setBadge(MainActivity.this, mCartItemCount);
                 }catch (BadgesNotSupportedException e){
-                    Toast.makeText(MainActivity.this,"that was an error!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this,"that was an error!", Toast.LENGTH_SHORT).show();
                 }
                 //notificationNumber.setText(""+notificationsList.size());
 

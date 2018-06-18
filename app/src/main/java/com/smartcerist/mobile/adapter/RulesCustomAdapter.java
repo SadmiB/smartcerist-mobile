@@ -35,7 +35,7 @@ public class RulesCustomAdapter extends RecyclerView.Adapter<RulesCustomAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Rule rule = rulesList.get(position);
-        holder.status.setChecked(rule.getStatus());
+        holder.status.setChecked(rule.getState());
         holder.rule.setText(rule.getDescription());
     }
 

@@ -1,21 +1,19 @@
 package com.smartcerist.mobile.model;
 
-public class Rule {
-    private Boolean status;
+import java.io.Serializable;
+import java.util.List;
+
+public class Rule implements Serializable{
+    private String _id;
+    private String name;
     private String description;
+    private List<String> actions;
+    private List<String> conditions;
+    private Boolean state;
 
-    public Rule(Boolean status, String description) {
-        this.status = status;
+    public Rule(String description, Boolean state) {
         this.description = description;
-    }
-
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
+        this.state = state;
     }
 
     public String getDescription() {
@@ -24,5 +22,13 @@ public class Rule {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getState() {
+        return state;
+    }
+
+    public void setState(Boolean state) {
+        this.state = state;
     }
 }
