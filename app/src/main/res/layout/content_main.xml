@@ -8,12 +8,9 @@
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/main_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.smartcerist.mobile.fragment.BlankFragment">
-
-    </fragment>
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

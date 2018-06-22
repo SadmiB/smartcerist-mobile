@@ -15,12 +15,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.smartcerist.mobile.R;
+import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.adapter.CamerasCustomAdapter;
+import com.smartcerist.mobile.adapter.RoomsCustomAdapter;
 import com.smartcerist.mobile.adapter.RulesCustomAdapter;
+import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Rule;
+import com.smartcerist.mobile.util.NetworkUtil;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 
 /**
@@ -30,17 +36,12 @@ public class RulesFragment extends BottomSheetDialogFragment {
 
     View view;
     RecyclerView mRecyclerView;
-    List<Rule> rulesList = Arrays.asList(
-            new Rule( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s.", true),
-            new Rule( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s.", false),
-            new Rule( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s.", false),
-            new Rule( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s.", true),
-            new Rule( "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\'s standard dummy text ever since the 1500s.", true));
+    private CompositeDisposable mSubscriptions;
 
+    List<Rule> rulesList;
     public RulesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,12 @@ public class RulesFragment extends BottomSheetDialogFragment {
 
         mRecyclerView = view.findViewById(R.id.rules_list);
 
-        RulesCustomAdapter rulesCustomAdapter= new RulesCustomAdapter(getActivity(), rulesList);
+        RoomsActivity activity = (RoomsActivity)getActivity();
+        assert activity != null;
+        Home home =  activity.getHome();
+        rulesList = home.getRules();
+
+        RulesCustomAdapter rulesCustomAdapter= new RulesCustomAdapter(getActivity(), home.get_id() , rulesList);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         mRecyclerView.setLayoutManager(gridLayoutManager);

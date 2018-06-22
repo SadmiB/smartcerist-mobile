@@ -55,4 +55,9 @@
     <string name="pause">PAUSE</string>
     <string name="rules">RULES</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.</string>
+    <string name="objects">objects</string>
+    <string name="cameras">cameras</string>
+    <string name="min_threshold">Min threshold</string>
+    <string name="max_threshold">Max threshold</string>
+    <string name="save">Save</string>
 </resources>

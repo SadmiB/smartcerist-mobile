@@ -18,12 +18,12 @@
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                android:text="objects"/>
+                android:text="@string/objects"/>
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                android:text="cameras" />
+                android:text="@string/cameras" />
 
         </android.support.design.widget.TabLayout>
 

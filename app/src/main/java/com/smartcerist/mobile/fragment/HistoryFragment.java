@@ -68,6 +68,7 @@ public class HistoryFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_history, container, false);
 
         RoomActivity activity = (RoomActivity) getActivity();
+        assert activity != null;
         Room room = activity.getRoom();
         events = room.getEvents();
 

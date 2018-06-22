@@ -8,9 +8,8 @@
     android:orientation="vertical"
     android:background="@color/grayColor">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/room_fragment"
-        class="com.smartcerist.mobile.fragment.BlankFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="@id/navigation"

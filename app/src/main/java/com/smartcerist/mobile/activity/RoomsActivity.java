@@ -26,6 +26,7 @@ import com.smartcerist.mobile.util.NetworkUtil;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -37,18 +38,20 @@ public class RoomsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ProgressBar progressBar;
 
+    Home home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         Intent intent = getIntent();
-        Home home = (Home) intent.getSerializableExtra("home");
+        home = (Home) intent.getSerializableExtra("home");
 
         recyclerView = findViewById(R.id.roomsList);
         progressBar = findViewById(R.id.progressBar);
@@ -70,7 +73,9 @@ public class RoomsActivity extends AppCompatActivity {
 
     }
 
-
+    public Home getHome() {
+        return home;
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

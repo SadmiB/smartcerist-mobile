@@ -31,6 +31,7 @@ public class MonitorPagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+
     @Override
     public int getCount() {
         return PAGES_NUM;

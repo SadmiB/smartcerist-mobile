@@ -13,6 +13,8 @@ import com.smartcerist.mobile.fragment.HistoryFragment;
 import com.smartcerist.mobile.fragment.MonitorFragment;
 import com.smartcerist.mobile.model.Room;
 
+import java.util.Objects;
+
 public class RoomActivity extends AppCompatActivity {
     private Room room;
 
@@ -56,9 +58,7 @@ public class RoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
@@ -67,7 +67,7 @@ public class RoomActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.room_fragment,
-                        new MonitorFragment()).commit();
+                        new MonitorFragment()).addToBackStack(null).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

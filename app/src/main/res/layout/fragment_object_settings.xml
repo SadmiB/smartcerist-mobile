@@ -7,88 +7,57 @@
     android:padding="4dp"
     tools:context=".fragment.ObjectSettingsFragment">
 
-    <SeekBar
-        android:id="@+id/min_seek_bar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
+    <EditText
+        android:id="@+id/min_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:max="10"
-        android:progress="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <SeekBar
-        android:id="@+id/max_seek_bar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:max="10"
-        android:progress="7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="265dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="265dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Min threshold:"
-        android:textSize="12dp"
+        android:layout_marginTop="8dp"
+        android:inputType="numberDecimal"
+        android:hint="@string/min_threshold"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/max_et"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="249dp"
-        android:layout_marginRight="249dp"
-        android:layout_marginTop="34dp"
-        android:text="Max threshold:"
-        android:textSize="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:inputType="numberDecimal"
+        android:hint="@string/max_threshold"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/min_seek_bar" />
-
-    <Button
-        android:id="@+id/cancel_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="16dp"
-        android:background="@color/colorPrimaryText"
-        android:text="Cancel"
-        android:textColor="@color/grayColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/save_btn"
-        app:layout_constraintTop_toTopOf="@+id/save_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/min_et" />
 
     <Button
         android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="@color/colorPrimaryText"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/max_seek_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/max_et" />
+
+
+
 
 </android.support.constraint.ConstraintLayout>
