@@ -48,4 +48,7 @@ public interface RetrofitInterface {
 
     @GET("/objects/{objectId}")
     Observable<Server> getServerByObjectId(@Path("objectId") String objectId);
+
+    @GET("/cameras/{cameraId}")
+    Observable<Server> getCameraByCameraId(@Path("cameraId") String cameraId);
 }
