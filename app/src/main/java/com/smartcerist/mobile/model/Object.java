@@ -1,6 +1,8 @@
 package com.smartcerist.mobile.model;
 
-public class Object {
+import java.io.Serializable;
+
+public class Object implements Serializable{
 
     private String _id;
     private String name;
@@ -12,8 +14,11 @@ public class Object {
     private String server_ipv4;
     private String server_lipv4;
     private String measure;
-    private String max_threshold;
     private String min_threshold;
+    private String max_threshold;
+    private String server_id;
+    private String beacon_id;
+
 
     public Object() {
     }
@@ -25,7 +30,7 @@ public class Object {
         this.type = type;
     }
 
-    public Object(String _id, String name, String path, ObjectsTypes type, String ipv6, String server_ipv6, String server_lipv6, String server_ipv4, String server_lipv4, String max_threshold, String min_threshold) {
+    public Object(String _id, String name, String path, ObjectsTypes type, String ipv6, String server_ipv6, String server_lipv6, String server_ipv4, String server_lipv4, String server_id, String beacon_id, String min_threshold, String max_threshold) {
         this._id = _id;
         this.name = name;
         this.path = path;
@@ -35,8 +40,10 @@ public class Object {
         this.server_lipv6 = server_lipv6;
         this.server_ipv4 = server_ipv4;
         this.server_lipv4 = server_lipv4;
-        this.max_threshold = max_threshold;
+        this.server_id = server_id;
+        this.beacon_id = beacon_id;
         this.min_threshold = min_threshold;
+        this.max_threshold = max_threshold;
     }
 
     public Object(String name, String path, ObjectsTypes type, String ipv6, String server_ipv6, String server_ipv4) {
@@ -143,5 +150,21 @@ public class Object {
 
     public void setMin_threshold(String min_threshold) {
         this.min_threshold = min_threshold;
+    }
+
+    public String getServer_id() {
+        return server_id;
+    }
+
+    public void setServer_id(String server_id) {
+        this.server_id = server_id;
+    }
+
+    public String getBeacon_id() {
+        return beacon_id;
+    }
+
+    public void setBeacon_id(String beacon_id) {
+        this.beacon_id = beacon_id;
     }
 }

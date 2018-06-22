@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
@@ -94,6 +95,9 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
             switch (item.getItemId()){
                 case R.id.settings:
                     ObjectSettingsFragment fragment = new ObjectSettingsFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object", object);
+                    fragment.setArguments(bundle);
                     fragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ObjectSettingsFragment.TAG);
                     break;
             }
@@ -169,7 +173,7 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                     progressBar.setVisibility(View.VISIBLE);
                     CoapGetTask task = new CoapGetTask(this);
                     Object object = objectsList.get(position);
-                    String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+                    String url = "coap://[" + object.getIpv6() +"]/"+ object.getPath()+":5683";
                     startTask.execute(task, url);
                 }
             });
@@ -203,8 +207,8 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                 holder.action_btn.setEnabled(true);
             }
             else{
-                holder.object_value.setText(String.format("%s", "Disconnected"));
-                showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.object_value.setText(String.format("%s", " Disconnected"));
+                showSnackBarMessage(holder.object_name.getText() + " is Disconnected");
                 holder.action_btn.setEnabled(false);
             }
         }
@@ -252,8 +256,8 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                 //String objectName = holder.object_name.getText().toString().toLowerCase();
                 //Log.d(objectName, "onPostExecute: " + coapResponse.advanced().getRTT()+"ms");
             }else{
-                holder.object_value.setText(String.format("%s", "Disconnected"));
-                showSnackBarMessage(holder.object_name.getText() + "is Disconnected");
+                holder.object_value.setText(String.format("%s", " Disconnected"));
+                showSnackBarMessage(holder.object_name.getText() + " is Disconnected");
                 holder.action_btn.setEnabled(false);
             }
             holder.progressBar.setVisibility(View.INVISIBLE);

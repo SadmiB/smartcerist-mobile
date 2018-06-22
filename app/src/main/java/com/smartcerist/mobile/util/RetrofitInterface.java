@@ -51,4 +51,10 @@ public interface RetrofitInterface {
 
     @GET("/cameras/{cameraId}")
     Observable<Server> getCameraByCameraId(@Path("cameraId") String cameraId);
+
+    @PUT("/{serverId}/{beaconId}/objects/{objectId}")
+    Observable<Server> updateObjectSettings(@Path("serverId") String serverId,
+                                            @Path("beaconId") String beaconId,
+                                            @Path("objectId") String objectId,
+                                            @Body Object object);
 }

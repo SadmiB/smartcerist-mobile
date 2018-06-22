@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Server {
 
+    private String _id;
     private String name;
     private String ipv6;
     private String lipv6;
@@ -68,5 +69,13 @@ public class Server {
 
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }

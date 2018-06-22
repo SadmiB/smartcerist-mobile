@@ -17,13 +17,11 @@ import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.activity.RoomActivity;
 import com.smartcerist.mobile.adapter.ObjectsCustomAdapter;
 import com.smartcerist.mobile.model.Object;
-import com.smartcerist.mobile.model.ObjectsTypes;
 import com.smartcerist.mobile.model.Server;
 import com.smartcerist.mobile.util.NetworkUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -132,7 +130,6 @@ public class ObjectsFragment extends Fragment {
         } else {
 
             showSnackBarMessage("Network Error !");
-            Toast.makeText(getActivity(), "error :" + error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -162,6 +159,8 @@ public class ObjectsFragment extends Fragment {
                         server.getLipv6(),
                         server.getIpv4(),
                         server.getLipv6(),
+                        server.get_id(),
+                        server.getBeacons().get(0).get_id(),
                         object.getMin_threshold(),
                         object.getMax_threshold()
                         );

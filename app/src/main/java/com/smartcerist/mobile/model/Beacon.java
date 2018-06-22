@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Beacon {
 
+    private String _id;
     private String ipv6;
     private String ipv4;
     private String name;
@@ -39,5 +40,13 @@ public class Beacon {
 
     public void setObjects(List<Object> objects) {
         this.objects = objects;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }
