@@ -11,8 +11,33 @@ public class Object {
     private String server_lipv6;
     private String server_ipv4;
     private String server_lipv4;
-    private String status;
     private String measure;
+    private String max_threshold;
+    private String min_threshold;
+
+    public Object() {
+    }
+
+    public Object(String _id, String name, String path, ObjectsTypes type, String min_threshold, String max_threshold) {
+        this._id = _id;
+        this.name = name;
+        this.path = path;
+        this.type = type;
+    }
+
+    public Object(String _id, String name, String path, ObjectsTypes type, String ipv6, String server_ipv6, String server_lipv6, String server_ipv4, String server_lipv4, String max_threshold, String min_threshold) {
+        this._id = _id;
+        this.name = name;
+        this.path = path;
+        this.type = type;
+        this.ipv6 = ipv6;
+        this.server_ipv6 = server_ipv6;
+        this.server_lipv6 = server_lipv6;
+        this.server_ipv4 = server_ipv4;
+        this.server_lipv4 = server_lipv4;
+        this.max_threshold = max_threshold;
+        this.min_threshold = min_threshold;
+    }
 
     public Object(String name, String path, ObjectsTypes type, String ipv6, String server_ipv6, String server_ipv4) {
         this.name = name;
@@ -96,19 +121,27 @@ public class Object {
         this.server_lipv4 = server_lipv4;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getMeasure() {
         return measure;
     }
 
     public void setMeasure(String measure) {
         this.measure = measure;
+    }
+
+    public String getMax_threshold() {
+        return max_threshold;
+    }
+
+    public void setMax_threshold(String max_threshold) {
+        this.max_threshold = max_threshold;
+    }
+
+    public String getMin_threshold() {
+        return min_threshold;
+    }
+
+    public void setMin_threshold(String min_threshold) {
+        this.min_threshold = min_threshold;
     }
 }

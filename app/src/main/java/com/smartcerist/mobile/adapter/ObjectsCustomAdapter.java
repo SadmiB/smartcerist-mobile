@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.fragment.ObjectSettingsFragment;
@@ -50,7 +51,7 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
     private Context context;
     private List<Object> objectsList;
 
-    public ObjectsCustomAdapter(Context context, List<Object> objectsList, CompositeDisposable mDisposable) {
+    public ObjectsCustomAdapter(Context context, List<Object> objectsList) {
         this.context = context;
         this.objectsList = objectsList;
     }
@@ -71,8 +72,9 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
 
         holder.progressBar.setVisibility(View.VISIBLE);
         CoapGetTask task = new CoapGetTask(holder);
-        String url = "coap://[" + object.getIpv6() +"]"+ object.getPath()+":5683";
+        String url = "coap://[" + object.getIpv6() +"]/"+ object.getPath()+":5683";
         startTask.execute(task, url);
+
 
         holder.object_icon.setBackgroundResource(getIcon(object.getType()));
         holder.object_name.setText(object.getName());

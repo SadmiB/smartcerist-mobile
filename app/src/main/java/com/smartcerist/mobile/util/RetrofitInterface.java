@@ -5,6 +5,7 @@ import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.model.Response;
 import com.smartcerist.mobile.model.Room;
 import com.smartcerist.mobile.model.Rule;
+import com.smartcerist.mobile.model.Server;
 import com.smartcerist.mobile.model.User;
 
 import java.util.List;
@@ -44,4 +45,7 @@ public interface RetrofitInterface {
 
     @PUT("/homes/{homeId}/rules/{ruleId}")
     Observable<List<Rule>> updateRule(@Path("homeId") String homeId, @Path("ruleId") String ruleId, @Body Rule rule);
+
+    @GET("/objects/{objectId}")
+    Observable<Server> getServerByObjectId(@Path("objectId") String objectId);
 }
