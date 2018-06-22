@@ -13,6 +13,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.smartcerist.mobile.R;
 
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -48,33 +49,11 @@ public class AnalyticsFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
-        // we're going to simulate real time with thread that append data to the graph
-        new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                // we add 100 new entries
-                for (int i = 0; i < 100; i++) {
-                    getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            addEntry();
-                        }
-                    });
-
-                    // sleep to slow down the add of entries
-                    try {
-                        Thread.sleep(600);
-                    } catch (InterruptedException e) {
-                        // manage error ...
-                    }
-                }
-            }
-        }).start();
     }
 
     // add random data to graph

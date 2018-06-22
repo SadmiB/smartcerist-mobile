@@ -28,7 +28,7 @@ public class RoomActivity extends AppCompatActivity {
                         fragment = new MonitorFragment();
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.room_fragment, fragment);
-                        ft.addToBackStack(null);
+                        //ft.addToBackStack(null);
                         ft.commit();
 
                         return true;
@@ -37,7 +37,7 @@ public class RoomActivity extends AppCompatActivity {
                         fragment = new AnalyticsFragment();
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.room_fragment, fragment);
-                        ft.addToBackStack(null);
+                        //ft.addToBackStack(null);
                         ft.commit();
 
                         return true;
@@ -45,7 +45,7 @@ public class RoomActivity extends AppCompatActivity {
                         fragment = new HistoryFragment();
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.room_fragment, fragment);
-                        ft.addToBackStack(null);
+                        //ft.addToBackStack(null);
                         ft.commit();
 
                         return true;
@@ -67,7 +67,7 @@ public class RoomActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.room_fragment,
-                        new MonitorFragment()).addToBackStack(null).commit();
+                        new MonitorFragment()).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -78,6 +78,7 @@ public class RoomActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     public Room getRoom(){
         return this.room;
     }
