@@ -40,7 +40,7 @@ public class CamerasFragment extends Fragment {
     RecyclerView mRecyclerView;
     View view;
     CompositeDisposable mCompositeDisposable;
-    List<Camera> camerasList;
+    List<Camera> camerasList = new ArrayList<>();
 
     /*
     List<Camera> camerasList = Arrays.asList(
@@ -63,7 +63,6 @@ public class CamerasFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.cameras_list);
 
         mCompositeDisposable = new CompositeDisposable();
-        camerasList = new ArrayList<>();
 
 
         RoomActivity activity = (RoomActivity)getActivity();
@@ -73,15 +72,7 @@ public class CamerasFragment extends Fragment {
 
         getCameras(camerasIds);
 
-        CamerasCustomAdapter camerasCustomAdapter = new CamerasCustomAdapter(getActivity(), camerasList);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        itemAnimator.setAddDuration(1000);
-        itemAnimator.setRemoveDuration(1000);
-        mRecyclerView.setItemAnimator(itemAnimator);
-        mRecyclerView.setAdapter(camerasCustomAdapter);
 
         return view;
     }
@@ -110,6 +101,15 @@ public class CamerasFragment extends Fragment {
         camera.setIpv6(server.getIpv6());
 
         camerasList.add(camera);
+
+        CamerasCustomAdapter camerasCustomAdapter = new CamerasCustomAdapter(getActivity(), camerasList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        mRecyclerView.setItemAnimator(itemAnimator);
+        mRecyclerView.setAdapter(camerasCustomAdapter);
     }
 
     private void handleError(Throwable error){

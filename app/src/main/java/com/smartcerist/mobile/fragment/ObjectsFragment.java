@@ -39,8 +39,7 @@ public class ObjectsFragment extends Fragment {
     RecyclerView mRecyclerView;
     CompositeDisposable mCompositeDisposable;
 
-    List<Object> objectsList;
-
+    List<Object> objectsList = new ArrayList<>();
 
     /*
 
@@ -75,20 +74,10 @@ public class ObjectsFragment extends Fragment {
         assert activity != null;
         String[] objectsIds  = activity.getRoom().getObjects();
 
-        objectsList = new ArrayList<>();
-
         getObjects(objectsIds);
 
 
-        ObjectsCustomAdapter objectsCustomAdapter = new ObjectsCustomAdapter(getActivity(), objectsList);
 
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity() ,1);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        itemAnimator.setAddDuration(1000);
-        itemAnimator.setRemoveDuration(1000);
-        mRecyclerView.setItemAnimator(itemAnimator);
-        mRecyclerView.setAdapter(objectsCustomAdapter);
 
         return view;
     }
@@ -100,9 +89,8 @@ public class ObjectsFragment extends Fragment {
         mCompositeDisposable.add(NetworkUtil.getRetrofit().getServerByObjectId(objectId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(server -> {
-                      handleResponse(server, objectId);
-                    },
+                .subscribe(server ->
+                        handleResponse(server, objectId),
                         this::handleError
                 ));
     }
@@ -110,6 +98,14 @@ public class ObjectsFragment extends Fragment {
     private void handleResponse(Server server, String objectId) {
         objectsList.add(getObject(server, objectId));
 
+        ObjectsCustomAdapter objectsCustomAdapter = new ObjectsCustomAdapter(getActivity(), objectsList);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity() ,1);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        mRecyclerView.setItemAnimator(itemAnimator);
+        mRecyclerView.setAdapter(objectsCustomAdapter);
     }
 
 
