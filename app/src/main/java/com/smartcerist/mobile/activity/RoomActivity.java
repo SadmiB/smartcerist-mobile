@@ -19,39 +19,6 @@ public class RoomActivity extends AppCompatActivity {
     private Room room;
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-                Fragment fragment;
-                FragmentTransaction ft;
-                switch (item.getItemId()) {
-                    case R.id.navigation_objects:
-                        fragment = new MonitorFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.room_fragment, fragment);
-                        //ft.addToBackStack(null);
-                        ft.commit();
-
-                        return true;
-                    case R.id.navigation_dashboard:
-
-                        fragment = new AnalyticsFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.room_fragment, fragment);
-                        //ft.addToBackStack(null);
-                        ft.commit();
-
-                        return true;
-                    case R.id.navigation_history:
-                        fragment = new HistoryFragment();
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.room_fragment, fragment);
-                        //ft.addToBackStack(null);
-                        ft.commit();
-
-                        return true;
-                }
-                return false;
-            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +30,6 @@ public class RoomActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         this.room = (Room) intent.getSerializableExtra("room");
-
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.room_fragment,
-                        new MonitorFragment()).commit();
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override

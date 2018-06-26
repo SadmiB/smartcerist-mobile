@@ -40,6 +40,10 @@ public class RoomsActivity extends AppCompatActivity {
 
     Home home;
 
+    private Room room;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,7 @@ public class RoomsActivity extends AppCompatActivity {
 
         List<Room> roomsList = home.getRooms();
 
+        setRoom(roomsList.get(0));
 
         RoomsCustomAdapter roomsCustomAdapter = new RoomsCustomAdapter(this, roomsList);
 
@@ -75,6 +80,14 @@ public class RoomsActivity extends AppCompatActivity {
 
     public Home getHome() {
         return home;
+    }
+
+    public Room getRoom() {
+        return this.room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     @Override

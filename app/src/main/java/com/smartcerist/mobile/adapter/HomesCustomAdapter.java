@@ -79,4 +79,6 @@ public class HomesCustomAdapter extends RecyclerView.Adapter<HomesCustomAdapter.
     }
 
 
+
+
 }

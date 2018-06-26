@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
 import com.smartcerist.mobile.model.Home;
 import com.smartcerist.mobile.model.Notification;
+import com.smartcerist.mobile.util.DeviceService;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
 
@@ -108,7 +110,14 @@ public class HomesFragment extends Fragment {
 
         HomesCustomAdapter homesCustomAdapter = new HomesCustomAdapter(getActivity(), homesList);
 
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity() ,1);
+        DeviceService  deviceService = new DeviceService(getActivity());
+        GridLayoutManager mLayoutManager;
+        if(deviceService.getScreenDensityConfiguration().equals("xxxhdpi")){
+            mLayoutManager = new GridLayoutManager(getActivity() ,2);
+        }else {
+            mLayoutManager = new GridLayoutManager(getActivity() ,1);
+        }
+
         recyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setAddDuration(1000);

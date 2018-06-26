@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class RoomsCustomAdapter extends RecyclerView.Adapter<RoomsCustomAdapter.
 
     private Context context;
     private List<Room> roomsList;
+
 
     public RoomsCustomAdapter(Context context, List<Room> roomsList) {
         this.context = context;
@@ -64,21 +66,30 @@ public class RoomsCustomAdapter extends RecyclerView.Adapter<RoomsCustomAdapter.
         ImageView image;
         TextView name;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
 
             image = itemView.findViewById(R.id.room_icon);
             name = itemView.findViewById(R.id.room_name);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, RoomActivity.class);
-                    intent.putExtra("room", roomsList.get(getAdapterPosition()));
-                    context.startActivity(intent);
+            itemView.setOnClickListener(v -> {
+              Room  room = roomsList.get(getAdapterPosition());
+              if(isTwoPan()) {
+                  RoomsActivity activity = (RoomsActivity) context;
+                  activity.setRoom(room);
+                  Log.d("TwoPan", "onClick: TwoPan");
+              }else {
+                  Intent intent = new Intent(context, RoomActivity.class);
+                  intent.putExtra("room", room);
+                  context.startActivity(intent);
+                  Log.d("NotTwoPan", "onClick: NotTwoPan");
+              }
 
-                }
             });
+        }
+        private boolean isTwoPan() {
+            View view = itemView.findViewById(R.id.the_room_fragment);
+            return view != null;
         }
     }
 }

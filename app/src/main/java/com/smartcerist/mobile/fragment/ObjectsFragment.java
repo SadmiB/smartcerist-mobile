@@ -1,6 +1,7 @@
 package com.smartcerist.mobile.fragment;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -15,8 +16,11 @@ import android.widget.Toast;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.activity.RoomActivity;
+import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.adapter.ObjectsCustomAdapter;
+import com.smartcerist.mobile.adapter.RoomsCustomAdapter;
 import com.smartcerist.mobile.model.Object;
+import com.smartcerist.mobile.model.Room;
 import com.smartcerist.mobile.model.Server;
 import com.smartcerist.mobile.util.NetworkUtil;
 
@@ -70,9 +74,15 @@ public class ObjectsFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.objects_list);
 
 
-        RoomActivity activity = (RoomActivity) getActivity();
-        assert activity != null;
-        String[] objectsIds  = activity.getRoom().getObjects();
+        Activity activity = getActivity();
+        Room room = null;
+        if(activity instanceof RoomsActivity)
+            room = ((RoomsActivity) activity).getRoom();
+        else if(activity instanceof RoomActivity)
+            room = ((RoomActivity) activity).getRoom();
+
+        assert room != null;
+        String[] objectsIds  = room.getObjects();
 
         getObjects(objectsIds);
 
