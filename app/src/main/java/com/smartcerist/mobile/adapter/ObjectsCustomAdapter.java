@@ -31,6 +31,7 @@ import com.smartcerist.mobile.model.ObjectsTypes;
 
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -200,10 +201,10 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         protected void onPostExecute(CoapResponse coapResponse) {
             if(coapResponse!=null){
                 String value = coapResponse.getResponseText();
-                holder.object_value.setText(value);
                 int position = holder.getAdapterPosition();
                 Object object = objectsList.get(position);
                 object.setMeasure(value);
+                holder.object_value.setText(getValue(object.getType(), value));
                 holder.action_btn.setEnabled(true);
             }
             else{
@@ -241,9 +242,9 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         protected void onPostExecute(CoapResponse coapResponse) {
             if(coapResponse!=null) {
                 String value = coapResponse.getResponseText();
-                holder.object_value.setText(value);
                 int position = holder.getAdapterPosition();
                 Object object = objectsList.get(position);
+                holder.object_value.setText(getValue(object.getType(), value));
                 object.setMeasure(value);
                 if(holder.action_btn.getVisibility() == View.VISIBLE){
                     holder.action_btn.setEnabled(false);
@@ -272,6 +273,36 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
         @SafeVarargs
         static <P, T extends AsyncTask<P, ?, ?>> void execute(T task, P... params) {
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, params);
+        }
+    }
+
+
+    private String getValue(ObjectsTypes object_type, String value) {
+
+        switch (object_type) {
+            case temperature:
+                return value + " °C";
+            case power:
+                return value + " mA";
+            case presence:
+                if(value.equals("0"))
+                    return  "NO DETECTION";
+                else if(value.equals("1"))
+                    return "MOTION DETECTED";
+            case light:
+                return value + "Lux";
+            case led:
+                if(value.equals("0"))
+                    return "OFF";
+                else if(value.equals("1"))
+                    return  "ON";
+            case ventilator:
+                if(value.equals("0"))
+                    return "OFF";
+                else if(value.equals("1"))
+                    return  "ON";
+            default:
+                return value;
         }
     }
 }
