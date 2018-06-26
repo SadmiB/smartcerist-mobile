@@ -7,25 +7,22 @@
         <item
             android:id="@+id/nav_homes"
             android:icon="@drawable/ic_home"
-            android:title="Homes" />
+            android:title="@string/homes" />
         <item
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notifications"
-            android:title="Notifications" />
+            android:title="@string/notifications" />
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_account"
-            android:title="Profile" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:title="@string/profile" />
+
     </group>
     <group>
         <item
             android:id="@+id/nav_signout"
             android:icon="@drawable/ic_signout"
-            android:title="Sign out" />
+            android:title="@string/sign_out" />
     </group>
 
 </menu>

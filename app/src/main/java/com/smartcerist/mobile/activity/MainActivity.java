@@ -25,7 +25,6 @@ import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.fragment.HomesFragment;
 import com.smartcerist.mobile.fragment.NotificationsFragment;
 import com.smartcerist.mobile.fragment.ProfileFragment;
-import com.smartcerist.mobile.fragment.SettingsFragment;
 import com.smartcerist.mobile.model.Notification;
 import com.smartcerist.mobile.util.NetworkUtil;
 import com.smartcerist.mobile.util.UserPreferenceManager;
@@ -222,12 +221,6 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         }else if (id == R.id.nav_account) {
             fragment = new ProfileFragment();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.main_fragment, fragment);
-            ft.addToBackStack(null);
-            ft.commit();
-        } else if (id == R.id.nav_settings) {
-            fragment = new SettingsFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, fragment);
             ft.addToBackStack(null);

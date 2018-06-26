@@ -60,4 +60,8 @@
     <string name="min_threshold">Min threshold</string>
     <string name="max_threshold">Max threshold</string>
     <string name="save">Save</string>
+    <string name="homes">Homes</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="sign_out">Sign out</string>
 </resources>
