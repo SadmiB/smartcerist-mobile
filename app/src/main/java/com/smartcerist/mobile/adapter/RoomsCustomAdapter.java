@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.activity.RoomActivity;

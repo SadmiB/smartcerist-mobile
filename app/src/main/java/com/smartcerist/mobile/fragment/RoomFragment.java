@@ -28,7 +28,7 @@ public class RoomFragment extends Fragment {
                 fragment = new MonitorFragment();
                 assert getFragmentManager() != null;
                 ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.room_fragment, fragment);
+                ft.replace(R.id.the_room_fragment, fragment);
                 //ft.addToBackStack(null);
                 ft.commit();
 
@@ -38,7 +38,7 @@ public class RoomFragment extends Fragment {
                 fragment = new AnalyticsFragment();
                 assert getFragmentManager() != null;
                 ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.room_fragment, fragment);
+                ft.replace(R.id.the_room_fragment, fragment);
                 //ft.addToBackStack(null);
                 ft.commit();
 
@@ -47,7 +47,7 @@ public class RoomFragment extends Fragment {
                 fragment = new HistoryFragment();
                 assert getFragmentManager() != null;
                 ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.room_fragment, fragment);
+                ft.replace(R.id.the_room_fragment, fragment);
                 //ft.addToBackStack(null);
                 ft.commit();
 
@@ -73,7 +73,7 @@ public class RoomFragment extends Fragment {
 
         assert getFragmentManager() != null;
         getFragmentManager().beginTransaction()
-                .replace(R.id.room_fragment,
+                .replace(R.id.the_room_fragment,
                         new MonitorFragment()).commit();
 
         BottomNavigationView bottomNavigationView = view.findViewById(R.id.navigation);

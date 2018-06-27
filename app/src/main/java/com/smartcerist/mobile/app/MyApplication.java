@@ -2,6 +2,8 @@ package com.smartcerist.mobile.app;
 
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.util.FontsOverride;
@@ -23,5 +25,11 @@ public class MyApplication extends Application{
                 "fonts/Dosis-Regular.ttf");
         FontsOverride.setDefaultFont(this, "SANS_SERIF",
                 "fonts/Dosis-Regular.ttf");
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

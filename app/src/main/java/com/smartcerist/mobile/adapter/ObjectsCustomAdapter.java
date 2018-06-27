@@ -290,7 +290,7 @@ public class ObjectsCustomAdapter extends RecyclerView.Adapter<ObjectsCustomAdap
                 else if(value.equals("1"))
                     return "MOTION DETECTED";
             case light:
-                return value + "Lux";
+                return value + " Lux";
             case led:
                 if(value.equals("0"))
                     return "OFF";

@@ -110,10 +110,22 @@ public class HomesFragment extends Fragment {
 
         HomesCustomAdapter homesCustomAdapter = new HomesCustomAdapter(getActivity(), homesList);
 
-        DeviceService  deviceService = new DeviceService(getActivity());
+        DisplayMetrics  metrics= new DisplayMetrics();
+
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int widthPixels = metrics.widthPixels;
+        int heightPixels = metrics.heightPixels;
+
+        float scaleFactor = metrics.density;
+
+        float widthDp = widthPixels / scaleFactor;
+        float heightDp = heightPixels / scaleFactor;
+
+        float smallestWidth = Math.min(widthDp, heightDp);
         GridLayoutManager mLayoutManager;
-        if(deviceService.getScreenDensityConfiguration().equals("xxxhdpi")){
-            mLayoutManager = new GridLayoutManager(getActivity() ,2);
+        if(smallestWidth >= 720){
+            mLayoutManager = new GridLayoutManager(getActivity() ,3);
         }else {
             mLayoutManager = new GridLayoutManager(getActivity() ,1);
         }

@@ -54,7 +54,7 @@
 
 
         <fragment
-            android:id="@+id/the_room_fragment"
+            android:id="@+id/room_fragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"

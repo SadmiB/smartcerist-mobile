@@ -10,7 +10,7 @@
     android:background="@color/grayColor">
 
     <FrameLayout
-        android:id="@+id/room_fragment"
+        android:id="@+id/the_room_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="@id/navigation"

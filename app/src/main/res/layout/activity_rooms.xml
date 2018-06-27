@@ -8,7 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -31,7 +31,6 @@
                 android:layout_marginBottom="8dp"
                 android:dividerHeight="10dp" />
 
-
         </LinearLayout>
 
     </ScrollView>
@@ -45,4 +44,5 @@
         android:background="@color/white"
         android:layout_gravity="bottom"
         android:onClick="showRules"/>
+
 </android.support.design.widget.CoordinatorLayout>

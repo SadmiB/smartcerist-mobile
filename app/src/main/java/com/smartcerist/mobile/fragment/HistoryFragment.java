@@ -1,5 +1,6 @@
 package com.smartcerist.mobile.fragment;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.ProgressBar;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.activity.RoomActivity;
+import com.smartcerist.mobile.activity.RoomsActivity;
 import com.smartcerist.mobile.adapter.HistoryCustomAdapter;
 import com.smartcerist.mobile.model.ObjectEvent;
 import com.smartcerist.mobile.model.Room;
@@ -67,9 +69,14 @@ public class HistoryFragment extends Fragment {
         if(view == null)
             view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        RoomActivity activity = (RoomActivity) getActivity();
-        assert activity != null;
-        Room room = activity.getRoom();
+        Activity activity = getActivity();
+        Room room = null;
+        if(activity instanceof RoomsActivity)
+            room = ((RoomsActivity) activity).getRoom();
+        else if(activity instanceof RoomActivity)
+            room = ((RoomActivity) activity).getRoom();
+
+        assert room != null;
         events = room.getEvents();
 
 
