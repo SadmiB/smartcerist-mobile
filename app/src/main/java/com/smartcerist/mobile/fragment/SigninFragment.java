@@ -146,7 +146,7 @@ public class SigninFragment extends Fragment {
             UserPreferenceManager userPreferenceManager = new UserPreferenceManager(getActivity());
             boolean feedback = userPreferenceManager.saveConnectedUser(response.getEmail(), response.getToken());
             Log.d("feedback", "handleResponse: " + feedback);
-            Toast.makeText(getActivity(), "welcome...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "welcome..", Toast.LENGTH_SHORT).show();
             et_email.setText(null);
             et_password.setText(null);
 

@@ -7,8 +7,8 @@ public class Rule implements Serializable{
     private String _id;
     private String name;
     private String description;
-    private List<String> actions;
-    private List<String> conditions;
+    private List<Action> actions;
+    private List<Condition> conditions;
     private Boolean state;
 
     public Rule(String description, Boolean state) {

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.smartcerist.mobile.R;
 import com.smartcerist.mobile.adapter.HomesCustomAdapter;
@@ -98,7 +99,7 @@ public class HomesFragment extends Fragment {
                 e.printStackTrace();
             }
         } else {
-
+            Log.d("TAG", "handleError: " + error );
             showSnackBarMessage("Network Error !");
         }
         progressBar.setVisibility(View.GONE);

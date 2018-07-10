@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
 
-        }, 0, 5000);
+        }, 0, 10000);
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
